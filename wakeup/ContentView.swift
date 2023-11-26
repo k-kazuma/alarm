@@ -9,18 +9,17 @@ import SwiftUI
 import CoreData
 
 
-//アプリ起動時にユーザーのデータを保持した構造体を作り各コンポーネントに渡すようにする。
-//エラー出てるからまだ実装できてないよ
 struct UserData {
     var wakeUpTime: String
     var bedTime: String
+    var permission: Bool
 }
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(sortDescriptors: []) var wakeup: FetchedResults<Item>
     
-    @State private var userData = UserData(wakeUpTime: "", bedTime: "")
+    @State private var userData = UserData(wakeUpTime: "", bedTime: "", permission: false)
     
     var body: some View {
         
@@ -31,6 +30,13 @@ struct ContentView: View {
                 TopPage(userData: $userData)
                     .onAppear() {
                         setUserData()
+                        Task {
+                            var res = await requestAuthorization()
+                            if !res {
+                                print("通知を許可して下さい。")
+                            }
+                        }
+                        
                     }
             }
             
@@ -89,6 +95,7 @@ struct ContentView: View {
             
             userData.wakeUpTime = wakeup[0].wakeUpTime!
             userData.bedTime = wakeup[0].bedTime!
+            userData.permission = wakeup[0].permission
             
             print("set")
     }

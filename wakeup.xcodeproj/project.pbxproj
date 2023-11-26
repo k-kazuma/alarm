@@ -15,6 +15,7 @@
 		DA052FAA2B026BED00149A88 /* wakeup.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DA052FA82B026BED00149A88 /* wakeup.xcdatamodeld */; };
 		DA18B62B2B09BDA8006E73DC /* Registration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA18B62A2B09BDA8006E73DC /* Registration.swift */; };
 		DA18B62D2B1056D5006E73DC /* TopPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA18B62C2B1056D5006E73DC /* TopPage.swift */; };
+		DAACD3282B12EB6D00302C5F /* notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAACD3272B12EB6D00302C5F /* notification.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		DA052FAC2B026BED00149A88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA18B62A2B09BDA8006E73DC /* Registration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Registration.swift; sourceTree = "<group>"; };
 		DA18B62C2B1056D5006E73DC /* TopPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopPage.swift; sourceTree = "<group>"; };
+		DAACD3272B12EB6D00302C5F /* notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = notification.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 				DA052F9F2B026BEB00149A88 /* ContentView.swift */,
 				DA18B62C2B1056D5006E73DC /* TopPage.swift */,
 				DA18B62A2B09BDA8006E73DC /* Registration.swift */,
+				DAACD3272B12EB6D00302C5F /* notification.swift */,
 				DA052FA12B026BED00149A88 /* Assets.xcassets */,
 				DA052FA62B026BED00149A88 /* Persistence.swift */,
 				DA052FAB2B026BED00149A88 /* wakeup.entitlements */,
@@ -158,6 +161,7 @@
 				DA052FA72B026BED00149A88 /* Persistence.swift in Sources */,
 				DA052FA02B026BEB00149A88 /* ContentView.swift in Sources */,
 				DA18B62B2B09BDA8006E73DC /* Registration.swift in Sources */,
+				DAACD3282B12EB6D00302C5F /* notification.swift in Sources */,
 				DA052F9E2B026BEB00149A88 /* wakeupApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

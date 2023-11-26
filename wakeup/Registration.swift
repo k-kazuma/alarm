@@ -53,9 +53,12 @@ struct Registration: View {
         if wakeup[0].wakeUpTime != nil  && wakeup[0].bedTime != nil {
             Text("起床時刻：\(wakeup[0].wakeUpTime!)")
             Text("就寝時刻：\(wakeup[0].bedTime!)")
-            Button("OK") {
+            Button("通知を許可してアラームをセット") {
                 wakeup[0].completion = true
                 do {
+                    Task {
+                        permission = await requestAuthorization()
+                    }
                     try viewContext.save()
                 } catch {
                     fatalError("失敗")
