@@ -21,6 +21,9 @@ struct ContentView: View {
     
     @State private var userData = UserData(wakeUpTime: "", bedTime: "", permission: false)
     
+    @Environment(\.scenePhase) private var scenePhase
+
+    
     var body: some View {
         
         VStack {
@@ -30,20 +33,27 @@ struct ContentView: View {
                 TopPage(userData: $userData)
                     .onAppear() {
                         setUserData()
-                        Task {
-                            var res = await requestAuthorization()
-                            if !res {
-                                print("通知を許可して下さい。")
-                            }
-                        }
+//                        Task {
+//                            var res = await requestAuthorization()
+//                            if !res {
+//                                print("通知を許可して下さい。")
+//                            }
+//                        }
                         
                     }
             }
             
             
         }
+        .onChange(of: scenePhase) {
+            if scenePhase == .active {
+                print("復帰")
+                setUserData()
+            }
+                }
         .onAppear() {
             initUserData()
+            
         }
         
         //       データーベースを初期化する処理。
@@ -92,12 +102,17 @@ struct ContentView: View {
         guard wakeup[0].wakeUpTime != nil && wakeup[0].bedTime != nil  else{
             return
         }
-            
+        Task {
+            let res = await requestAuthorization()
+            print("Userdata:\(res)")
             userData.wakeUpTime = wakeup[0].wakeUpTime!
             userData.bedTime = wakeup[0].bedTime!
-            userData.permission = wakeup[0].permission
+            userData.permission = res
+        }
             
-            print("set")
+            
+            
+            
     }
     
 }

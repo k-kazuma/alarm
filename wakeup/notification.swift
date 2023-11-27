@@ -11,15 +11,7 @@ import UserNotifications
 public func requestAuthorization() async -> Bool {
     do {
         let reqestResult = try await UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge])
-        if reqestResult {
-            print("許可")
-            return true
-            
-        } else {
-            print("拒否")
-            return false
-            
-        }
+        return reqestResult
     } catch {
         print(error)
         return false

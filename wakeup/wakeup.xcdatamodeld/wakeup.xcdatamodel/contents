@@ -3,7 +3,6 @@
     <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
         <attribute name="bedTime" optional="YES" attributeType="String"/>
         <attribute name="completion" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="permission" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="wakeUpTime" optional="YES" attributeType="String"/>
     </entity>
 </model>

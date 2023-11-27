@@ -57,7 +57,7 @@ struct Registration: View {
                 wakeup[0].completion = true
                 do {
                     Task {
-                        permission = await requestAuthorization()
+                      await requestAuthorization()
                     }
                     try viewContext.save()
                 } catch {
