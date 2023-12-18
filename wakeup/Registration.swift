@@ -14,6 +14,7 @@ struct Registration: View {
     @State var wakeUpTime: Date = Date()
     @State var bedTime: Date = Date()
     
+    let calender = Calendar.current
     let bounds = UIScreen.main.bounds
     
     var body: some View {
@@ -27,6 +28,7 @@ struct Registration: View {
             Button("追加") {
                 do {
                     try newWakeUpTime(time: wakeUpTime)
+                    print(Int("23425")!)
                 } catch {
                     fatalError("error")
                 }
@@ -51,8 +53,11 @@ struct Registration: View {
         }
         
         if wakeup[0].wakeUpTime != nil  && wakeup[0].bedTime != nil {
-            Text("起床時刻：\(wakeup[0].wakeUpTime!)")
-            Text("就寝時刻：\(wakeup[0].bedTime!)")
+            
+//            Text("起床時刻：\(wakeup[0].wakeUpTime!)")
+            Text("起床時刻：\(timeConversion2(second:Int(wakeup[0].wakeUpTime!)!))")
+//            Text("就寝時刻：\(wakeup[0].bedTime!)")
+            Text("起床時刻：\(timeConversion2(second:Int(wakeup[0].bedTime!)!))")
             Button("通知を許可してアラームをセット") {
                 wakeup[0].completion = true
                 do {
@@ -69,8 +74,15 @@ struct Registration: View {
     }
     
     func newWakeUpTime (time: Date) throws {
-        let newTime = formatter(time: time)
-        wakeup[0].wakeUpTime = newTime
+//        let newTime = formatter(time: time)
+//        wakeup[0].wakeUpTime = newTime
+        
+        let hour = calender.component(.hour, from: time)
+        let minute = calender.component(.minute, from: time)
+        let newTime = timeConversion(hour: hour, minute: minute)
+        wakeup[0].wakeUpTime = String(newTime)
+        
+        
         do {
             try viewContext.save()
         } catch {
@@ -80,8 +92,15 @@ struct Registration: View {
     }
     
     func newBedTime (time: Date) throws {
-        let newTime = formatter(time: time)
-        wakeup[0].bedTime = newTime
+//        let newTime = formatter(time: time)
+//        wakeup[0].bedTime = newTime
+        
+        let hour = calender.component(.hour, from: time)
+        let minute = calender.component(.minute, from: time)
+        let newTime = timeConversion(hour: hour, minute: minute)
+        wakeup[0].bedTime = String(newTime)
+        
+        
         do {
             try viewContext.save()
         } catch {
