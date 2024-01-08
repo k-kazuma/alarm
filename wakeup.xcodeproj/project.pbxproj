@@ -15,6 +15,10 @@
 		DA052FAA2B026BED00149A88 /* wakeup.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DA052FA82B026BED00149A88 /* wakeup.xcdatamodeld */; };
 		DA18B62B2B09BDA8006E73DC /* Registration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA18B62A2B09BDA8006E73DC /* Registration.swift */; };
 		DA18B62D2B1056D5006E73DC /* TopPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA18B62C2B1056D5006E73DC /* TopPage.swift */; };
+		DA731B3A2B3E8098002732AC /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA731B392B3E8098002732AC /* Setting.swift */; };
+		DA76BF9C2B466513001FFDC3 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = DA76BF9B2B466513001FFDC3 /* SwiftyJSON */; };
+		DA76BF9F2B4665E3001FFDC3 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = DA76BF9E2B4665E3001FFDC3 /* Alamofire */; };
+		DA76BFA12B466600001FFDC3 /* weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA76BFA02B466600001FFDC3 /* weather.swift */; };
 		DAACD3282B12EB6D00302C5F /* notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAACD3272B12EB6D00302C5F /* notification.swift */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +34,8 @@
 		DA052FAC2B026BED00149A88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA18B62A2B09BDA8006E73DC /* Registration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Registration.swift; sourceTree = "<group>"; };
 		DA18B62C2B1056D5006E73DC /* TopPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopPage.swift; sourceTree = "<group>"; };
+		DA731B392B3E8098002732AC /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
+		DA76BFA02B466600001FFDC3 /* weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = weather.swift; sourceTree = "<group>"; };
 		DAACD3272B12EB6D00302C5F /* notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = notification.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -38,6 +44,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA76BF9C2B466513001FFDC3 /* SwiftyJSON in Frameworks */,
+				DA76BF9F2B4665E3001FFDC3 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +74,8 @@
 				DA052F9D2B026BEB00149A88 /* wakeupApp.swift */,
 				DA052F9F2B026BEB00149A88 /* ContentView.swift */,
 				DA18B62C2B1056D5006E73DC /* TopPage.swift */,
+				DA731B392B3E8098002732AC /* Setting.swift */,
+				DA76BFA02B466600001FFDC3 /* weather.swift */,
 				DA18B62A2B09BDA8006E73DC /* Registration.swift */,
 				DAACD3272B12EB6D00302C5F /* notification.swift */,
 				DA052FA12B026BED00149A88 /* Assets.xcassets */,
@@ -102,6 +112,10 @@
 			dependencies = (
 			);
 			name = wakeup;
+			packageProductDependencies = (
+				DA76BF9B2B466513001FFDC3 /* SwiftyJSON */,
+				DA76BF9E2B4665E3001FFDC3 /* Alamofire */,
+			);
 			productName = wakeup;
 			productReference = DA052F9A2B026BEB00149A88 /* wakeup.app */;
 			productType = "com.apple.product-type.application";
@@ -130,6 +144,10 @@
 				Base,
 			);
 			mainGroup = DA052F912B026BEB00149A88;
+			packageReferences = (
+				DA76BF9A2B466513001FFDC3 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				DA76BF9D2B4665E3001FFDC3 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = DA052F9B2B026BEB00149A88 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -162,7 +180,9 @@
 				DA052FA02B026BEB00149A88 /* ContentView.swift in Sources */,
 				DA18B62B2B09BDA8006E73DC /* Registration.swift in Sources */,
 				DAACD3282B12EB6D00302C5F /* notification.swift in Sources */,
+				DA731B3A2B3E8098002732AC /* Setting.swift in Sources */,
 				DA052F9E2B026BEB00149A88 /* wakeupApp.swift in Sources */,
+				DA76BFA12B466600001FFDC3 /* weather.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,6 +392,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DA76BF9A2B466513001FFDC3 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
+		DA76BF9D2B4665E3001FFDC3 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.8.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DA76BF9B2B466513001FFDC3 /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DA76BF9A2B466513001FFDC3 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
+		DA76BF9E2B4665E3001FFDC3 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DA76BF9D2B4665E3001FFDC3 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		DA052FA82B026BED00149A88 /* wakeup.xcdatamodeld */ = {

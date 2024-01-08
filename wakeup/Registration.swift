@@ -39,7 +39,7 @@ struct Registration: View {
         
         if wakeup[0].wakeUpTime != nil  && wakeup[0].bedTime == nil {
             Text("就寝時刻を選択")
-            DatePicker("就寝時間", selection:$wakeUpTime, displayedComponents: .hourAndMinute)
+            DatePicker("就寝時間", selection:$bedTime, displayedComponents: .hourAndMinute)
                 .datePickerStyle(WheelDatePickerStyle())
                 .labelsHidden()
             

@@ -15,6 +15,11 @@ struct UserData {
     var permission: Bool
 }
 
+//１時間ごとの天気情報を格納する構造体
+struct WeatherTime {
+    var everyHourWeather:[[String:String]]
+}
+
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(sortDescriptors: []) var wakeup: FetchedResults<Item>
@@ -54,6 +59,7 @@ struct ContentView: View {
         .onAppear() {
             if wakeup[0].wakeUpTime != nil && wakeup[0].bedTime != nil {
                 setUserData()
+                getWeather(lat: "38.1705275", lon: "140.417219")
             } else {
                 initUserData()
             }
@@ -123,71 +129,71 @@ struct ContentView: View {
     
 }
 
-struct testView: View {
-    
-    @State var dispTime = ""
-    @State var waitingTime = ""
-    @State var nowTime = Date()
-    let dateFormatterTime = DateFormatter()
-    let calender = Calendar.current
-    let date = Date()
-    @State var hour:Int = 0
-    @State var minute:Int = 0
-    @State var second:Int = 0
-    @State var time = timeConversion(hour: 9, minute: 0)
-    
-    init() {
-        dateFormatterTime.dateStyle = .none
-        dateFormatterTime.timeStyle = .short
-    }
-    
-    
-    var body: some View {
-        ZStack{
-            Color.gray
-            VStack{
-                Spacer()
-                VStack{
-                    Text(dispTime.isEmpty ? "\(dateFormatterTime.string(from: nowTime))" : dispTime)
-                    Text("起床時間まであと\(waitingTime)")
-                    Text("就寝時間まであと")
-                }
-                Spacer()
-                HStack{
-                    Button("設定") {
-                        
-                    }
-                    .fontWeight(.semibold)
-                    .frame(width: 160, height: 48)
-                    .foregroundColor(.white)
-                    .background(Color.blue)
-                    .cornerRadius(24)
-                }
-                .padding()
-            }
-        }
-        .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
-        .onAppear {
-            //毎秒処理をする
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-                //現在の日時を取得し時、分、秒それぞれ格納する
-                self.nowTime = Date()
-                self.hour = calender.component(.hour, from: nowTime)
-                self.minute = calender.component(.minute, from: nowTime)
-                self.second = calender.component(.second, from: nowTime)
-                
-                //現在時刻を秒数に変換
-                let nowTime = timeConversion(hour: self.hour, minute: self.minute, second: self.second)
-//              //起床時刻から現在時刻を引いて文字列で残り時間を返す。
-                if time < nowTime {
-                    time += timeConversion(hour: 24, minute: 0)
-                }
-                dispTime = timeConversion2(second: nowTime)
-                waitingTime = timeConversion2(second: time - nowTime)
-            }
-        }
-    }
-}
+//struct testView: View {
+//    
+//    @State var dispTime = ""
+//    @State var waitingTime = ""
+//    @State var nowTime = Date()
+//    let dateFormatterTime = DateFormatter()
+//    let calender = Calendar.current
+//    let date = Date()
+//    @State var hour:Int = 0
+//    @State var minute:Int = 0
+//    @State var second:Int = 0
+//    @State var time = timeConversion(hour: 9, minute: 0)
+//    
+//    init() {
+//        dateFormatterTime.dateStyle = .none
+//        dateFormatterTime.timeStyle = .short
+//    }
+//    
+//    
+//    var body: some View {
+//        ZStack{
+//            Color.gray
+//            VStack{
+//                Spacer()
+//                VStack{
+//                    Text(dispTime.isEmpty ? "\(dateFormatterTime.string(from: nowTime))" : dispTime)
+//                    Text("起床時間まであと\(waitingTime)")
+//                    Text("就寝時間まであと")
+//                }
+//                Spacer()
+//                HStack{
+//                    Button("設定") {
+//                        
+//                    }
+//                    .fontWeight(.semibold)
+//                    .frame(width: 160, height: 48)
+//                    .foregroundColor(.white)
+//                    .background(Color.blue)
+//                    .cornerRadius(24)
+//                }
+//                .padding()
+//            }
+//        }
+//        .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
+//        .onAppear {
+//            //毎秒処理をする
+//            Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+//                //現在の日時を取得し時、分、秒それぞれ格納する
+//                self.nowTime = Date()
+//                self.hour = calender.component(.hour, from: nowTime)
+//                self.minute = calender.component(.minute, from: nowTime)
+//                self.second = calender.component(.second, from: nowTime)
+//                
+//                //現在時刻を秒数に変換
+//                let nowTime = timeConversion(hour: self.hour, minute: self.minute, second: self.second)
+////              //起床時刻から現在時刻を引いて文字列で残り時間を返す。
+//                if time < nowTime {
+//                    time += timeConversion(hour: 24, minute: 0)
+//                }
+//                dispTime = timeConversion2(second: nowTime)
+//                waitingTime = timeConversion2(second: time - nowTime)
+//            }
+//        }
+//    }
+//}
 
 //時間を秒数に変換
 func timeConversion(hour:Int, minute:Int, second:Int = 0) -> Int {

@@ -18,13 +18,23 @@ struct TopPage: View {
     @State var second:Int = 0
     @State var dispTime = ""
     @State var wakeUpTime: Int = 0
-   
+    
     
     var body: some View {
         
-        VStack{
-            Text("起床時刻\(userData.wakeUpTime == "" ? userData.wakeUpTime : timeConversion2(second: Int(userData.wakeUpTime)!))")
-            Text("起床時刻\(userData.bedTime == "" ? userData.wakeUpTime : timeConversion2(second: Int(userData.bedTime)!))")
+        NavigationView{
+            VStack{
+                Text("起床時刻\(userData.wakeUpTime == "" ? userData.wakeUpTime : timeConversion2(second: Int(userData.wakeUpTime)!))")
+                Text("就寝時刻\(userData.bedTime == "" ? userData.bedTime : timeConversion2(second: Int(userData.bedTime)!))")
+                Text(dispTime)
+                
+                NavigationLink(destination: Setting(userData: $userData)){
+                    Text("設定")
+                }
+                
+                
+                
+            }
         }
         .onAppear() {
             Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
@@ -36,12 +46,12 @@ struct TopPage: View {
                 
                 //現在時刻を秒数に変換
                 let nowTime = timeConversion(hour: self.hour, minute: self.minute, second: self.second)
-//              //起床時刻から現在時刻を引いて文字列で残り時間を返す。
+                //              //起床時刻から現在時刻を引いて文字列で残り時間を返す。
                 if wakeUpTime < nowTime {
                     wakeUpTime += timeConversion(hour: 24, minute: 0)
                 }
                 dispTime = timeConversion2(second: nowTime)
-
+                
             }
         }
         
@@ -51,6 +61,6 @@ struct TopPage: View {
                 UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
             }
         }
-
+        
     }
 }
